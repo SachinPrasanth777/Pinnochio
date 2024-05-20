@@ -1,7 +1,6 @@
 import express from "express";
-import { config } from "dotenv";
-config();
+import config from "./config";
 const app = express();
-app.listen(process.env.PORT, () => {
-  console.log(`Running on PORT ${process.env.PORT}`);
+app.listen(config.PORT, () => {
+  console.log(`Running on PORT ${config.PORT}`);
 });
