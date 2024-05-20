@@ -8,9 +8,9 @@ export interface ApiError extends Error {
 
 export const errorHandler = (
   error: ApiError,
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction,
+  _next: NextFunction,
 ) => {
   LoggerInstance.error(error);
   res.status(error.statusCode ?? 500).json({
