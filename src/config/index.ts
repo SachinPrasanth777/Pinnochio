@@ -7,6 +7,7 @@ const envSchema = z.object({
   PORT: z.string(),
   MONGODB_URI: z.string(),
   NODE_ENV: z.string(),
+  JWT_SECRET: z.string(),
 });
 
 const env = envSchema.parse(process.env);
@@ -16,6 +17,7 @@ export default {
   PORT: env.PORT,
   MONGODB_URI: env.MONGODB_URI,
   NODE_ENV: env.NODE_ENV,
+  JWT_SECRET: env.JWT_SECRET,
   logs: {
     level: process.env.LOG_LEVEL || "info",
   },
