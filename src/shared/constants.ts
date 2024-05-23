@@ -13,3 +13,7 @@ export const ERRORS = {
     },
   },
 };
+
+export const MESSAGES = {
+  SIGNED_IN: "User Signed Up Successfully",
+};
