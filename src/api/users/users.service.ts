@@ -8,8 +8,8 @@ export async function handleSignUp({ username, password }: AuthSchema) {
   const data = await users.findOne({ username: username });
   if (data) {
     throw {
-      statusCode: ERRORS.USER_ALREADY_EXISTS,
-      message: ERRORS.USER_ALREADY_EXISTS.message,
+      statusCode: ERRORS.USER_ALREADY_EXISTS.statusCode,
+      message: ERRORS.USER_ALREADY_EXISTS.message.error,
     };
   }
   await bcrypt.hash(password, ROUNDS);

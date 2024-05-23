@@ -19,7 +19,7 @@ export default {
   NODE_ENV: env.NODE_ENV,
   JWT_SECRET: env.JWT_SECRET,
   logs: {
-    level: process.env.LOG_LEVEL || "info",
+    level: process.env.LOG_LEVEL || "silly",
   },
   api: {
     prefix: "/api",
