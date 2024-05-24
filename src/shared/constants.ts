@@ -12,8 +12,23 @@ export const ERRORS = {
       error_description: "User Already Exists",
     },
   },
+  USER_NOT_FOUND: {
+    statusCode: 404,
+    message: {
+      error: "User not Signed Up",
+      error_description: "User does not Exist",
+    },
+  },
+  UNAUTHORIZED: {
+    statusCode: 401,
+    message: {
+      error: "Unauthorized Access",
+      error_description: "You don't have access to view this",
+    },
+  },
 };
 
 export const MESSAGES = {
   SIGNED_IN: "User Signed Up Successfully",
+  LOGGED_IN: "User Logged in Successfully",
 };

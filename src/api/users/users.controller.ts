@@ -1,4 +1,4 @@
-import { handleSignUp } from "./users.service";
+import { handleLogin, handleSignUp } from "./users.service";
 import { Request, Response, NextFunction, Router } from "express";
 import { MESSAGES } from "../../shared/constants";
 export const handleUser = async (
@@ -18,8 +18,27 @@ export const handleUser = async (
   }
 };
 
+export const handleUserLogin = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  const { username, password } = req.body;
+  try {
+    const token = await handleLogin({ username, password });
+    res.status(200).json({
+      success: true,
+      message: MESSAGES.LOGGED_IN,
+      token,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default (): Router => {
   const app = Router();
-  app.post("/login", handleUser);
+  app.post("/signup", handleUser);
+  app.post("/login", handleUserLogin);
   return app;
 };
