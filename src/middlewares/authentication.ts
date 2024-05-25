@@ -18,7 +18,7 @@ export function verifyUser() {
       const { data } = verifyToken(token);
       const user = await (await db())
         .collection("users")
-        .findOne({ _id: new ObjectId(data) });
+        .findOne({ username: data });
       if (!user) {
         throw {
           statusCode: ERRORS.USER_NOT_FOUND.statusCode,

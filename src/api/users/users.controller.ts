@@ -2,6 +2,7 @@ import { handleLogin, handleSignUp } from "./users.service";
 import { Request, Response, NextFunction, Router } from "express";
 import { MESSAGES } from "../../shared/constants";
 import { getUserbyId } from "./users.service";
+import { verifyUser } from "../../middlewares/authentication";
 
 export const handleUser = async (
   req: Request,
@@ -60,6 +61,6 @@ export default (): Router => {
   const app = Router();
   app.post("/signup", handleUser);
   app.post("/login", handleUserLogin);
-  app.get("/:id", getUserInfoById);
+  app.get("/:id", verifyUser(), getUserInfoById);
   return app;
 };
