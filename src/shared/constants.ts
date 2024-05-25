@@ -26,9 +26,17 @@ export const ERRORS = {
       error_description: "You don't have access to view this",
     },
   },
+  MISSING_ACCESS_TOKEN: {
+    statusCode: 401,
+    message: {
+      error: "Missing JWT Token",
+      error_description: "You don't have enough credentials",
+    },
+  },
 };
 
 export const MESSAGES = {
   SIGNED_IN: "User Signed Up Successfully",
   LOGGED_IN: "User Logged in Successfully",
+  FETCH_USER: "User details fetched Successfully",
 };

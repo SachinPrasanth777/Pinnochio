@@ -3,6 +3,7 @@ import db from "../../loaders/db";
 import { ERRORS, ROUNDS } from "../../shared/constants";
 import { AuthSchema, UserAuthSchema } from "./users.schema";
 import generateToken from "../../middlewares/jwt";
+import { ObjectId } from "mongodb";
 
 export async function handleSignUp({ username, password }: AuthSchema) {
   const users = (await db()).collection<UserAuthSchema>("users");
@@ -40,4 +41,16 @@ export async function handleLogin({
     };
   }
   return generateToken(username);
+}
+
+export async function getUserbyId(userId: string): Promise<UserAuthSchema> {
+  const users = (await db()).collection<UserAuthSchema>("users");
+  const user = await users.findOne({ _id: new ObjectId(userId) });
+  if (!user) {
+    throw {
+      statusCode: ERRORS.USER_NOT_FOUND.statusCode,
+      message: ERRORS.USER_NOT_FOUND.message.error,
+    };
+  }
+  return user;
 }
