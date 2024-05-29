@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@types/uuid':
+        specifier: ^9.0.8
+        version: 9.0.8
       bcryptjs:
         specifier: ^2.4.3
         version: 2.4.3
@@ -29,6 +32,9 @@ importers:
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
+      uuid:
+        specifier: ^9.0.1
+        version: 9.0.1
       winston:
         specifier: ^3.13.0
         version: 3.13.0
@@ -51,6 +57,9 @@ importers:
       '@types/jsonwebtoken':
         specifier: ^9.0.6
         version: 9.0.6
+      '@types/nanoid':
+        specifier: ^3.0.0
+        version: 3.0.0
       nodemon:
         specifier: ^3.1.0
         version: 3.1.0
@@ -123,6 +132,10 @@ packages:
   '@types/mime@1.3.5':
     resolution: {integrity: sha512-/pyBZWSLD2n0dcHE3hq8s8ZvcETHtEuF+3E7XVt0Ig2nvsVQXdghHVcEkIWjy9A0wKfTn97a/PSDYohKIlnP/w==}
 
+  '@types/nanoid@3.0.0':
+    resolution: {integrity: sha512-UXitWSmXCwhDmAKe7D3hNQtQaHeHt5L8LO1CB8GF8jlYVzOv5cBWDNqiJ+oPEWrWei3i3dkZtHY/bUtd0R/uOQ==}
+    deprecated: This is a stub types definition. nanoid provides its own type definitions, so you do not need this installed.
+
   '@types/node@20.12.8':
     resolution: {integrity: sha512-NU0rJLJnshZWdE/097cdCBbyW1h4hEg0xpovcoAQYHl8dnEyp/NAOiE45pvc+Bd1Dt+2r94v2eGFpQJ4R7g+2w==}
 
@@ -140,6 +153,9 @@ packages:
 
   '@types/triple-beam@1.3.5':
     resolution: {integrity: sha512-6WaYesThRMCl19iryMYP7/x2OVgCtbIVflDGFpWnb9irXI3UjYE4AzmYuiUKY1AJstGijoY+MgUszMgRxIYTYw==}
+
+  '@types/uuid@9.0.8':
+    resolution: {integrity: sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==}
 
   abbrev@1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
@@ -504,6 +520,11 @@ packages:
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
+  nanoid@5.0.7:
+    resolution: {integrity: sha512-oLxFY2gd2IqnjcYyOXD8XGCftpGtZP2AbHbOkthDkvRywH5ayNtPVy9YlOPcHckXzbLTCHpkb7FB+yuxKV13pQ==}
+    engines: {node: ^18 || >=20}
+    hasBin: true
+
   negotiator@0.6.3:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
     engines: {node: '>= 0.6'}
@@ -692,6 +713,10 @@ packages:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
 
+  uuid@9.0.1:
+    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
+    hasBin: true
+
   v8-compile-cache-lib@3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
 
@@ -785,6 +810,10 @@ snapshots:
 
   '@types/mime@1.3.5': {}
 
+  '@types/nanoid@3.0.0':
+    dependencies:
+      nanoid: 5.0.7
+
   '@types/node@20.12.8':
     dependencies:
       undici-types: 5.26.5
@@ -805,6 +834,8 @@ snapshots:
       '@types/send': 0.17.4
 
   '@types/triple-beam@1.3.5': {}
+
+  '@types/uuid@9.0.8': {}
 
   abbrev@1.1.1: {}
 
@@ -1180,6 +1211,8 @@ snapshots:
 
   ms@2.1.3: {}
 
+  nanoid@5.0.7: {}
+
   negotiator@0.6.3: {}
 
   nodemon@3.1.0:
@@ -1374,6 +1407,8 @@ snapshots:
   util-deprecate@1.0.2: {}
 
   utils-merge@1.0.1: {}
+
+  uuid@9.0.1: {}
 
   v8-compile-cache-lib@3.0.1: {}
 

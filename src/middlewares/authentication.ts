@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from "express";
 import { ERRORS } from "../shared/constants";
 import { verifyToken } from "./jwt";
 import db from "../loaders/db";
-import { ObjectId } from "mongodb";
 
 export function verifyUser() {
   return async (req: Request, res: Response, next: NextFunction) => {

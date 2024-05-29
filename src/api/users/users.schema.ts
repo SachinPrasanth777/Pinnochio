@@ -7,11 +7,11 @@ export const UserSchema = z.object({
   password: z
     .string()
     .min(6, { message: "Password must be atleast 6 characters" }),
-});
-export const UserAuthorizationSchema = UserSchema.pick({
-  username: true,
-  password: true,
+  OriginalUrl: z.array(z.string()),
+  ShortenedUrl: z.array(z.string()),
 });
 
-export type AuthSchema = z.infer<typeof UserAuthorizationSchema>;
+export const UserAuth = UserSchema.pick({ username: true, password: true });
+
+export type AuthSchema = z.infer<typeof UserAuth>;
 export type UserAuthSchema = z.infer<typeof UserSchema>;

@@ -1,7 +1,12 @@
-import { handleLogin, handleSignUp } from "./users.service";
+import {
+  handleLogin,
+  handleSignUp,
+  getUserbyId,
+  handleURL,
+  redirectToOriginalURL,
+} from "./users.service";
 import { Request, Response, NextFunction, Router } from "express";
-import { MESSAGES } from "../../shared/constants";
-import { getUserbyId } from "./users.service";
+import { MESSAGES, BASEURL } from "../../shared/constants";
 import { verifyUser } from "../../middlewares/authentication";
 
 export const handleUser = async (
@@ -57,10 +62,47 @@ export const getUserInfoById = async (
   }
 };
 
+export const getShortURL = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  const { username, url } = req.body;
+  try {
+    const shortURL = await handleURL(username, url);
+    res.status(200).json({
+      success: true,
+      message: MESSAGES.SHORTENED_URL,
+      shortURL,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const redirectURL = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  const value=req.params.value;
+  const shortURL = `${BASEURL}/${value}`;
+  console.log(shortURL);
+  try {
+    const originalURL = await redirectToOriginalURL(shortURL);
+    res.redirect(originalURL);
+    console.log(originalURL);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default (): Router => {
   const app = Router();
   app.post("/signup", handleUser);
   app.post("/login", handleUserLogin);
   app.get("/:id", verifyUser(), getUserInfoById);
+  app.post("/shorten", verifyUser(), getShortURL);
+  app.get("/:value",verifyUser(),redirectURL);
   return app;
 };
