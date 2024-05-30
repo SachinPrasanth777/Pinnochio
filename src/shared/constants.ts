@@ -51,7 +51,7 @@ export const ERRORS = {
   },
 };
 
-export const BASEURL = `http://localhost:${config.PORT}/${config.api.prefix}`;
+export const BASEURL = `http://localhost:${config.PORT}${config.api.prefix}`;
 
 export const URL_REGEX = /^(ftp|http|https):\/\/[^ "]+$/;
 
