@@ -80,29 +80,11 @@ export const getShortURL = async (
   }
 };
 
-export const redirectURL = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  const value=req.params.value;
-  const shortURL = `${BASEURL}/${value}`;
-  console.log(shortURL);
-  try {
-    const originalURL = await redirectToOriginalURL(shortURL);
-    res.redirect(originalURL);
-    console.log(originalURL);
-  } catch (error) {
-    next(error);
-  }
-};
-
 export default (): Router => {
   const app = Router();
   app.post("/signup", handleUser);
   app.post("/login", handleUserLogin);
   app.get("/:id", verifyUser(), getUserInfoById);
   app.post("/shorten", verifyUser(), getShortURL);
-  app.get("/:value",verifyUser(),redirectURL);
   return app;
 };

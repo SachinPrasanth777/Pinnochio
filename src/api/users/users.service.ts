@@ -64,12 +64,12 @@ export async function handleURL(userId: string, url: string): Promise<string> {
       message: ERRORS.INVALID_URL.message.error,
     };
   }
-  const shortURL = `${BASEURL}/${uuidv4().slice(0, 6)}`;
+  const shortURL = uuidv4().slice(0, 6);
   await collection.updateOne(
     { username: userId },
     { $push: { OriginalUrl: url, ShortenedUrl: shortURL } },
   );
-  return shortURL;
+  return `${BASEURL}/${shortURL}`;
 }
 
 export async function redirectToOriginalURL(shortURL: string): Promise<string> {
