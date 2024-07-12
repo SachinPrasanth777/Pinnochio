@@ -1,5 +1,3 @@
-import config from "../config";
-
 export const JWT_EXPIRY = {
   expiresIn: "2d",
 };
@@ -50,8 +48,6 @@ export const ERRORS = {
     },
   },
 };
-
-export const BASEURL = `http://localhost:${config.PORT}${config.api.prefix}`;
 
 export const URL_REGEX = /^(ftp|http|https):\/\/[^ "]+$/;
 

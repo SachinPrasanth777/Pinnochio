@@ -11,6 +11,6 @@ export default ({ app }: { app: express.Application }): void => {
   app.use(helmet());
   app.use(cors());
   app.use(bodyParser.json());
-  app.use(config.api.prefix, routes());
+  app.use(routes());
   app.use(errorHandler);
 };

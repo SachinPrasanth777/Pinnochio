@@ -6,7 +6,7 @@ import {
   redirectToOriginalURL,
 } from "./users.service";
 import { Request, Response, NextFunction, Router } from "express";
-import { MESSAGES, BASEURL } from "../../shared/constants";
+import { MESSAGES } from "../../shared/constants";
 import { verifyUser } from "../../middlewares/authentication";
 
 export const handleUser = async (
