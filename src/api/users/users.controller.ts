@@ -69,7 +69,7 @@ export const getShortURL = async (
 ) => {
   const { username, url } = req.body;
   try {
-    const shortURL = await handleURL(username, url);
+    const shortURL = await handleURL(username, url, req);
     res.status(200).json({
       success: true,
       message: MESSAGES.SHORTENED_URL,

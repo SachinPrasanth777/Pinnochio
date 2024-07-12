@@ -1,10 +1,11 @@
 import bcrypt from "bcryptjs";
 import db from "../../loaders/db";
 import { v4 as uuidv4 } from "uuid";
-import { BASEURL, ERRORS, ROUNDS, URL_REGEX } from "../../shared/constants";
+import { ERRORS, ROUNDS, URL_REGEX } from "../../shared/constants";
 import { UserAuthSchema, AuthSchema } from "./users.schema";
 import { ObjectId } from "mongodb";
 import generateToken from "../../middlewares/jwt";
+import { Request } from "express";
 
 export async function handleSignUp({ username, password }: AuthSchema) {
   const users = (await db()).collection<AuthSchema>("users");
@@ -56,7 +57,11 @@ export async function getUserbyId(userId: string): Promise<AuthSchema> {
   return user;
 }
 
-export async function handleURL(userId: string, url: string): Promise<string> {
+export async function handleURL(
+  userId: string,
+  url: string,
+  req: Request,
+): Promise<string> {
   const collection = (await db()).collection<UserAuthSchema>("users");
   if (!url || !url.match(URL_REGEX)) {
     throw {
@@ -64,12 +69,17 @@ export async function handleURL(userId: string, url: string): Promise<string> {
       message: ERRORS.INVALID_URL.message.error,
     };
   }
+
   const shortURL = uuidv4().slice(0, 6);
   await collection.updateOne(
     { username: userId },
     { $push: { OriginalUrl: url, ShortenedUrl: shortURL } },
   );
-  return `${BASEURL}/${shortURL}`;
+
+  const protocol = req.headers["x-forwarded-proto"] || "http";
+  const host = req.headers["host"];
+  const baseURL = `${protocol}://${host}`;
+  return `${baseURL}/${shortURL}`;
 }
 
 export async function redirectToOriginalURL(shortURL: string): Promise<string> {
